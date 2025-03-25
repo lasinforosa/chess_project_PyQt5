@@ -1,30 +1,13 @@
-BBDD SQLITE3
-
-CREATE TABLE IF NOT EXISTS games (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,           -- ID de l'usuari que ha guardat la partida
-    white TEXT NOT NULL,                -- Nom del jugador blanc
-    black TEXT NOT NULL,                -- Nom del jugador negre
-    elo_white INTEGER DEFAULT 0,        -- ELO del jugador blanc
-    elo_black INTEGER DEFAULT 0,        -- ELO del jugador negre
-    tournament TEXT DEFAULT '',         -- Nom del torneig
-    location TEXT DEFAULT '',           -- Lloc on es va jugar
-    round TEXT DEFAULT '',              -- Ronda del torneig
-    result TEXT DEFAULT '',             -- Resultat de la partida (1-0, 0-1, 1/2-1/2)
-    team_white TEXT DEFAULT '',         -- Equip del jugador blanc
-    team_black TEXT DEFAULT '',         -- Equip del jugador negre
-    eco TEXT DEFAULT '',                -- Codi ECO de l'obertura
-    moves BLOB NOT NULL,                -- Jugades emmagatzemades en format binari
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY(user_id) REFERENCES users(id)
-);
-
-CREATE TABLE users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL
-);
-
+OVERVIEW
 -----------------------------
 
+The intended app aims to develop a chess program with the following goals:
+1) Play over the board in graphical mode in a two person basis
+2) Save the games in SQLite3 with fiels of PGN Headers, while the game itself is in binary form (record tthe order number of legal move, only) "enCroissant" COmpatible
+3) It is possible have several sqlite DB , the app select one of them and how each DB has several games, the app can select via filter or search the desired game. This gam e can ve reviewed over the board
+4) (YNI - YET NOT IMPLEMENTED - ) The app manage several module of analisys as StockFish and other.
+5) It is possible to play against the module of analysis (white or black), also tho have machine vs machine game in automate mode, recording in a DB these games
+6) (YNI) The window screen, at the bottom of the board, has several button to review the game 
+7) There is a panel or container with the game (like PGN), The user can mouse-cick in a move ant the game goes to this move over the board
+8) (YNI)The container for game text can reproduce (HTML based) html content (grafics, texts, links, etc)
 
